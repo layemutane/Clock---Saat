@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title> Krc's Saat </title>
+</head>
+
+<body>
+
+<div class="clock">
+
+	<div class="clock-face">     
+    
+    <div class="kol akrep"></div>  
+    <div class="kol yelkovan"></div>
+	<div class="kol saniye"></div>
+          
+    </div>
+</div>
+
+<style>
+html { 
+		background:#9CF;
+		background-size:cover;
+		text-align:center;
+		font-family:Tahoma, Geneva, sans-serif;
+		font-size:12px
+	 }
+
+body {	
+			margin: 0;
+        	display: flex;
+            flex: 1;
+            min-height: 100vh;
+            align-items: center;
+	}
+ 
+.clock {
+			width: 30rem;
+            height: 30rem;
+            border: 20px solid black;
+            border-radius: 50%;
+            margin: 50px auto;
+            position: relative;
+            padding: 2rem;
+            box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1), inset 0 0 0 3px #EFEFEF, inset 0 0 10px black, 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+.clock-face
+{
+			position: relative;
+            width: 100%;
+            height: 100%;
+            transform: translateY(-3px);
+}
+.kol
+{
+			width: 50%;
+            height: 4px;
+            background: black;
+            position: absolute;
+            top: 50%;
+            transform-origin: 100%;
+            transition: all 0.05s;
+            transform: rotate(90deg);
+            transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+</style>
+
+<script>
+    
+        const saniyeKol = document.querySelector('.saniye');
+        const yelkovanKol = document.querySelector('.yelkovan');
+        const akrepKol = document.querySelector('.akrep');
+        function setDate() {
+            const now = new Date();
+			
+            const seconds = now.getSeconds();
+            const secondsDegrees = ((seconds / 60) * 360) + 90;
+			saniyeKol.style.transform =  `rotate(${secondsDegrees}deg)`;
+			
+            const mins = now.getMinutes();
+            const minsDegrees = ((mins / 60) * 360) + 90;
+            yelkovanKol.style.transform = `rotate(${minsDegrees}deg)`;
+            
+			const hour = now.getMinutes();
+            const hourDegrees = ((mins / 12) * 360) + 90;
+            akrepKol.style.transform = `rotate(${hourDegrees}deg)`; 
+        }
+        setInterval(setDate, 1000);
+    </script>
+
+</body>
+</html>
